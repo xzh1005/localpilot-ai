@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>LocalPilot AI | Marketing Copy Studio</title>
+<meta name="description" content="A free student portfolio demo that uses browser-based templates to draft social posts for independent UK businesses.">
+<style>
+:root{--ink:#17263a;--muted:#627086;--blue:#305ee8;--bg:#f5f7fc;--line:#dfe5f0;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+header{background:white;border-bottom:1px solid var(--line)}.nav{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 12px;padding:18px 22px}.brand{font-weight:850;letter-spacing:-.6px;font-size:19px}.brand b{color:var(--blue)}.tag{font-size:12px;border:1px solid #bfd0ff;border-radius:999px;padding:6px 12px;background:#f0f4ff;color:#2444ac;font-weight:650}
+main{max-width:1100px;margin:auto;padding:54px 22px}.hero{max-width:760px;margin:0 auto 36px;text-align:center}.eyebrow{font-size:12px;font-weight:800;letter-spacing:2px;color:var(--blue)}h1{font-size:clamp(36px,5.8vw,62px);line-height:1.06;letter-spacing:-2px;margin:15px 0}h1 span{color:var(--blue)}.lead{font-size:18px;line-height:1.6;color:var(--muted)}.pills{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin-top:24px}.pill{border:1px solid var(--line);border-radius:50px;background:#fff;font-size:13px;padding:8px 12px}
+.layout{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.panel{background:white;border:1px solid var(--line);box-shadow:0 12px 36px #13234a08;border-radius:18px;padding:26px}.panel h2{font-size:22px;letter-spacing:-.7px;margin:0 0 5px}.subtitle{color:var(--muted);font-size:14px;line-height:1.6;margin:0 0 22px}.field{margin-bottom:16px}label{display:block;font-weight:650;font-size:13px;margin-bottom:7px}input,select,textarea{width:100%;font:inherit;font-size:16px;border:1px solid #78869a;border-radius:10px;padding:12px 13px;background:white;color:var(--ink)}:is(input,textarea,select,button,h2):focus-visible{outline:2px solid #2444ac;outline-offset:3px}textarea{min-height:88px;resize:vertical}.btn{min-height:44px;background:var(--blue);color:white;padding:13px 18px;border:0;border-radius:10px;font-size:15px;font-weight:750;cursor:pointer}.btn:not(:disabled):hover{filter:brightness(.94)}.btn.secondary{color:var(--blue);background:#edf2ff}.buttons{display:flex;gap:9px;flex-wrap:wrap}.btn:disabled{opacity:.55;cursor:default}
+.output{display:block;background:#f8faff;padding:16px;line-height:1.65;overflow-wrap:anywhere;field-sizing:content;min-height:280px}
+.output::placeholder{color:var(--muted);opacity:1}
+.output-actions{margin-top:18px}
+.field-error{color:#a02536;font-size:14px;margin:7px 0 0}
+[aria-invalid="true"]{border-color:#a02536}
+#status{margin-bottom:0}
+.notice{font-size:12px;line-height:1.5;color:#657389;margin-top:18px}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:25px 0}.benefit{padding:19px;border:1px solid var(--line);border-radius:14px;background:white}.benefit strong{display:block;margin-bottom:7px}.benefit p{font-size:13px;color:var(--muted);line-height:1.5;margin:0}footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:28px 14px;font-size:12px}.fineprint{max-width:850px;margin:20px auto 0;font-size:13px;line-height:1.65;color:var(--muted)}
+@media(max-width:780px){main{padding:35px 16px}.layout,.benefits{grid-template-columns:minmax(0,1fr)}.panel{padding:20px}.nav{padding:14px 17px}.brand{font-size:17px}h1{letter-spacing:-1.3px}.output{min-height:230px}}
+@media(max-width:360px){.buttons .btn{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="brand">LocalPilot <b>AI</b></div><span class="tag">V0.1 · Template demo</span></div></header>
+<main>
+<section class="hero"><div class="eyebrow">BUILT FOR INDEPENDENT BUSINESSES</div><h1>Make better posts.<br><span>In less time.</span></h1><p class="lead">Create a first draft for your local business in seconds. No sign-up, no complicated setup. Made as an early experiment for shops, cafés and service businesses.</p><div class="pills"><span class="pill">✓ No account</span><span class="pill">✓ Works on your phone</span><span class="pill">✓ Free demo</span></div></section>
+<section class="layout" aria-label="Copy studio">
+  <div class="panel">
+    <h2>Tell us about your business</h2>
+    <p class="subtitle" id="form-hint">Enter a business name and something to promote, or try the fictional example.</p>
+    <form id="draft-form" aria-describedby="form-hint" novalidate>
+      <div class="field">
+        <label for="name">Business name</label>
+        <input id="name" type="text" maxlength="80" required aria-describedby="name-error" placeholder="e.g. The Riverside Café">
+        <p class="field-error" id="name-error" hidden>Enter a business name.</p>
+      </div>
+      <div class="field">
+        <label for="kind">Business type</label>
+        <select id="kind">
+          <option value="café">Café / coffee shop</option>
+          <option value="restaurant">Restaurant / takeaway</option>
+          <option value="shop">Independent shop</option>
+          <option value="salon">Salon / beauty</option>
+          <option value="service">Local service</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="offer">What would you like to promote?</label>
+        <textarea id="offer" maxlength="240" required aria-describedby="offer-error" placeholder="e.g. Freshly baked cinnamon rolls and a warm coffee"></textarea>
+        <p class="field-error" id="offer-error" hidden>Enter something to promote.</p>
+      </div>
+      <div class="field">
+        <label for="tone">Tone of voice</label>
+        <select id="tone">
+          <option value="friendly">Friendly &amp; welcoming</option>
+          <option value="professional">Professional &amp; clear</option>
+          <option value="playful">Light &amp; playful</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <button class="btn" type="submit" id="generate" disabled>Generate a draft</button>
+        <button class="btn secondary" type="button" id="example" disabled>Load example</button>
+      </div>
+    </form>
+    <noscript><p class="notice">Enable JavaScript in your browser to generate and copy drafts.</p></noscript>
+    <p class="notice">Drafts use templates and are generated in your browser. The demo does not send or save your entries. Please use fictional details and avoid entering personal or confidential information.</p>
+  </div>
+  <div class="panel">
+    <h2 id="draft-title" tabindex="-1">Your marketing draft</h2>
+    <p class="subtitle" id="draft-hint">You can edit your draft here. Check all details before posting.</p>
+    <textarea class="output" id="output" rows="9" aria-labelledby="draft-title" aria-describedby="draft-hint" readonly placeholder="Your post will appear here. Enter your details and select ‘Generate a draft’."></textarea>
+    <div class="buttons output-actions">
+      <button class="btn secondary" type="button" id="copy" disabled>Copy draft</button>
+      <button class="btn secondary" type="button" id="again" disabled>Try another variation</button>
+    </div>
+    <p class="notice" id="status" role="status"><span id="source-note"></span><span id="action-note"></span></p>
+  </div>
+</section>
+<section class="benefits"><div class="benefit"><strong>One clear task</strong><p>Produce an editable social-media draft without an endless menu of tools.</p></div><div class="benefit"><strong>No installation</strong><p>Use it in a browser. No account or technical knowledge required.</p></div><div class="benefit"><strong>Early-stage experiment</strong><p>We’re testing whether this workflow is helpful before adding more features.</p></div></section>
+<p class="fineprint"><strong>About this demo:</strong> LocalPilot AI is a student portfolio prototype. It uses writing templates without connecting to a live AI model. The demo is free and has no accounts or payments.</p>
+</main>
+<footer>LocalPilot AI · Woodbridge concept · Prototype V0.1 · November 2026</footer>
+<script>
+const form = document.getElementById('draft-form');
+const nameField = document.getElementById('name');
+const offerField = document.getElementById('offer');
+const kindField = document.getElementById('kind');
+const toneField = document.getElementById('tone');
+const output = document.getElementById('output');
+const sourceNote = document.getElementById('source-note');
+const actionNote = document.getElementById('action-note');
+const generateButton = document.getElementById('generate');
+const exampleButton = document.getElementById('example');
+const copyButton = document.getElementById('copy');
+const againButton = document.getElementById('again');
+let variation = 0;
+let generatedFrom = null;
+
+function clean(value) {
+  return value.replace(/\s+/g, ' ').trim();
+}
+
+function getDetails() {
+  return {
+    name: clean(nameField.value),
+    offer: clean(offerField.value),
+    kind: kindField.value,
+    tone: toneField.value
+  };
+}
+
+function showFieldError(field, invalid) {
+  document.getElementById(field.id + '-error').hidden = !invalid;
+  if (invalid) field.setAttribute('aria-invalid', 'true');
+  else field.removeAttribute('aria-invalid');
+}
+
+function makeDraft({ name, offer, kind, tone }) {
+  const openings = {
+    friendly: [`A little something from ${name} ☕`, `Hello from ${name}!`, `Something lovely is happening at ${name}.`],
+    professional: [`Discover what’s on offer at ${name}.`, `An update from ${name}:`, `At ${name}, we’re pleased to share:`],
+    playful: ['Your next favourite find? 👀', `Here’s a reason to pop by ${name}.`, 'This one deserves a spot on your to-do list!']
+  };
+  const endings = {
+    friendly: 'Come and see us when you’re nearby. We’d love to welcome you!',
+    professional: 'Visit or contact us to find out more.',
+    playful: 'Pop in and take a look!'
+  };
+  const hashtags = {
+    café: '#LocalCafe #CoffeeBreak',
+    restaurant: '#EatLocal #LocalFood',
+    shop: '#ShopLocal #IndependentBusiness',
+    salon: '#SelfCare #LocalBusiness',
+    service: '#SupportLocal #LocalServices'
+  };
+  const promotion = offer[0].toLocaleUpperCase('en-GB') + offer.slice(1);
+  const sentence = /[.!?…]$/.test(promotion) ? promotion : promotion + '.';
+  return [openings[tone][variation], sentence, endings[tone], hashtags[kind] + ' #Woodbridge'].join('\n\n');
+}
+
+function showDraft(details, firstDraft) {
+  output.value = makeDraft(details);
+  output.scrollTop = 0;
+  output.readOnly = false;
+  generatedFrom = details;
+  copyButton.disabled = false;
+  againButton.disabled = false;
+  if (firstDraft) document.getElementById('draft-title').focus();
+  sourceNote.textContent = '';
+  actionNote.textContent = firstDraft ? 'Draft ready to edit or copy.' : 'New variation ready to edit or copy.';
+}
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const details = getDetails();
+  showFieldError(nameField, !details.name);
+  showFieldError(offerField, !details.offer);
+  if (!details.name || !details.offer) {
+    (details.name ? offerField : nameField).focus();
+    return;
+  }
+  variation = 0;
+  showDraft(details, true);
+});
+
+form.addEventListener('input', event => {
+  const field = event.target;
+  if (field.hasAttribute('aria-invalid') && clean(field.value)) showFieldError(field, false);
+  if (!generatedFrom) return;
+
+  const details = getDetails();
+  const detailsChanged = Object.keys(generatedFrom).some(key => details[key] !== generatedFrom[key]);
+  if (detailsChanged !== againButton.disabled) {
+    againButton.disabled = detailsChanged;
+    sourceNote.textContent = detailsChanged
+      ? 'Business details changed. Generate a new draft to use them. '
+      : '';
+    actionNote.textContent = '';
+  }
+});
+
+exampleButton.addEventListener('click', () => {
+  nameField.value = 'The Riverside Café';
+  kindField.value = 'café';
+  offerField.value = 'Fresh cinnamon rolls and a comforting cup of coffee';
+  toneField.value = 'friendly';
+  form.requestSubmit();
+});
+
+againButton.addEventListener('click', () => {
+  variation = (variation + 1) % 3;
+  showDraft(generatedFrom, false);
+});
+
+output.addEventListener('input', () => {
+  copyButton.disabled = !clean(output.value);
+  actionNote.textContent = '';
+});
+
+copyButton.addEventListener('click', async () => {
+  const text = output.value;
+  if (!clean(text)) return;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    if (output.value === text) actionNote.textContent = 'Draft copied to the clipboard.';
+    return;
+  } catch {
+    // Some browsers block clipboard access, especially when opened as a local file.
+  }
+
+  if (output.value !== text) return;
+  const { selectionStart, selectionEnd } = output;
+  output.focus({ preventScroll: true });
+  output.select();
+  let copied = false;
+  try {
+    copied = document.execCommand('copy');
+  } catch {
+    // Keep the draft selected for manual copying.
+  }
+  if (copied) {
+    output.setSelectionRange(selectionStart, selectionEnd);
+    copyButton.focus({ preventScroll: true });
+  }
+  actionNote.textContent = copied
+    ? 'Draft copied to the clipboard.'
+    : 'Automatic copying is unavailable. Copy the selected draft using your keyboard or device’s copy menu.';
+});
+
+generateButton.disabled = false;
+exampleButton.disabled = false;
+</script>
+</body>
+</html>
